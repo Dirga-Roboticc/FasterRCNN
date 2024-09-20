@@ -8,7 +8,7 @@ from config import CLASSES, RESIZE_TO, TRAIN_DIR, VALID_DIR, BATCH_SIZE, NUM_CLA
 from torch.utils.data import Dataset, DataLoader
 from utils import collate_fn, get_train_transform, get_valid_transform
 
-class MicrocontrollerDataset(Dataset):
+class CustomDataset(Dataset):
     def __init__(self, dir_path, width, height, classes, transforms=None):
         self.transforms = transforms
         self.dir_path = dir_path
@@ -117,8 +117,8 @@ print(f"Number of images in TRAIN_DIR: {len(glob.glob(os.path.join(TRAIN_DIR, '*
 print(f"Number of images in VALID_DIR: {len(glob.glob(os.path.join(VALID_DIR, '*.jpg')) + glob.glob(os.path.join(VALID_DIR, '*.png')))}")
 
 # Menyiapkan data loader untuk dataset pelatihan dan validasi
-train_dataset = MicrocontrollerDataset(TRAIN_DIR, RESIZE_TO, RESIZE_TO, CLASSES, get_train_transform())
-valid_dataset = MicrocontrollerDataset(VALID_DIR, RESIZE_TO, RESIZE_TO, CLASSES, get_valid_transform())
+train_dataset = CustomDataset(TRAIN_DIR, RESIZE_TO, RESIZE_TO, CLASSES, get_train_transform())
+valid_dataset = CustomDataset(VALID_DIR, RESIZE_TO, RESIZE_TO, CLASSES, get_valid_transform())
 
 print(f"Number of training samples: {len(train_dataset)}")
 print(f"Number of validation samples: {len(valid_dataset)}")
