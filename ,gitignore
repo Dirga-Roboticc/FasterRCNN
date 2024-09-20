@@ -1,0 +1,4 @@
+.aider*
+output
+test_predictions
+__pycache__
